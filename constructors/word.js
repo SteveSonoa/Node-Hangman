@@ -27,7 +27,9 @@ var Word = function() {
 				// If the character is a-z or A-Z, known = false
 				this.known = false;
 			}
+			// Create a new Letter object for each character in the array (including spaces & punctuation)
 			var newLetter = new Letter(this.title.charAt(i), this.known);
+			// Added all Letter objects into the letters array. This will automatically put them in the proper order.
 			this.letters.push(newLetter);
 		}
 	}
