@@ -17,8 +17,8 @@ var Word = function() {
 		// Select a random movie title
 		randomMovie(function(err, data) {
 			console.log(data);
-			// var movieTitle = data.Title;
-			var movieTitle = "Return of the Jedi";
+			var movieTitle = data.Title;
+			// var movieTitle = "Return of the Jedi";
 		})
 
 		// this.title = OMDB movie title
