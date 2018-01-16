@@ -1,5 +1,6 @@
 // requiring our Classroom module exported from classroom.js
 var Letter = require("./letter.js");
+var randomMovie = require('random-movie');
 
 var Word = function() {
 	// Used to create an object representing the current word the user is attempting to guess.
@@ -13,8 +14,13 @@ var Word = function() {
 		this.letters.splice(0, this.letters.length);
 		// empty this.guessedLetters
 		this.guessedLetters.splice(0, this.guessedLetters.length);
-		// Select a random movie title from OMDB
-		var movieTitle = "Return of the Jedi";
+		// Select a random movie title
+		randomMovie(function(err, data) {
+			console.log(data);
+			// var movieTitle = data.Title;
+			var movieTitle = "Return of the Jedi";
+		})
+
 		// this.title = OMDB movie title
 		this.title = movieTitle;
 	}

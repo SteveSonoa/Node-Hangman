@@ -12,12 +12,15 @@ var Letter = function(letter, known) {
 	this.known = known;
 	// Display the appropriate output
 	this.displayLetters = function() {
+		// Letters To Display
+		var ltd;
 		if(this.known) {
-			console.log(this.letter + " ");
+			ltd = ltd + this.letter + " ";
 		}
 		else {
-			console.log("_ ");
+			ltd = ltd + "_ ";
 		}
+		console.log(ltd);
 	}
 };
 
