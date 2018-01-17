@@ -1,6 +1,3 @@
-// Requiring our CastMember constructor function we exported from castMember.js
-var Word = require("./word.js");
-
 var Letter = function(letter, known) {
 	// Used for each letter in the current word.
 	// Each letter object should either display an underlying character, or a blank placeholder (such as an underscore),
