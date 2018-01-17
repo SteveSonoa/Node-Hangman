@@ -2,19 +2,45 @@
 var Letter = require("./letter.js");
 var randomMovie = require('random-movie');
 
-var Word = function(title) {
+// Create a temporary title
+var newTitle;
+
+var Word = function() {
 	// Used to create an object representing the current word the user is attempting to guess.
 	// This should contain word specific logic and data.
-	this.title = title;
+	this.title = "";
 	this.letters = [];
 	this.guessedLetters = [];
 	// Restarts the game with a new word
+	this.restart = function() {
+		newTitle = "Return Of The Jedi";
+
+		// Discover a random movie title from OMDB
+		randomMovie(function(err, data) {
+			newTitle = data.Title;
+		});
+
+		// begin adding the new word
+		this.findNewWord();
+	}
 	this.findNewWord = function() {
-		// empty this.letters
-		this.letters.splice(0, this.letters.length);
-		// empty this.guessedLetters
-		this.guessedLetters.splice(0, this.guessedLetters.length);
-		this.addLetters();
+		// If the new title hasn't taken hold yet, wait for it to do so before moving on
+		if(newTitle === "Return Of The Jedi") {
+			console.log("Waiting...");
+			setTimeout(this.findNewWord, 500);
+		}
+		// When the new title has been updated, move forward
+		else {
+			// empty this.letters
+			for (var i = 0; i < this.letters.length; i++) {
+				this.letters.splice(0, 1);
+			}
+			// // empty this.guessedLetters
+			// this.guessedLetters.splice(0, this.guessedLetters.length);
+			this.title = newTitle;
+
+			console.log(this.title);
+		}
 	}
 	// Creates new letter objects & adds them to this object's array
 	this.addLetters = function() {
