@@ -6,6 +6,9 @@ var Word = function() {
 	// Used to create an object representing the current word the user is attempting to guess.
 	// This should contain word specific logic and data.
 	this.title = "";
+	this.hint1 = "";
+	this.hint2 = "";
+	this.hint3 = "";
 	this.letters = [];
 	this.guessedLetters = [];
 	// Restarts the game with a new word
@@ -16,6 +19,9 @@ var Word = function() {
 // ******** COMMENT THE NEXT 3 LINES OUT WHILE OFFLINE ********
 		// randomMovie(function(err, data) {
 		// 	this.title = data.Title;
+		//	this.hint1 = "This movie released in " + data.Year;
+		//	this.hint2 = "Starring " + data.Actors;
+		//	this.hint3 = data.Plot;
 		// });
 
 		// begin adding the new word

@@ -13,6 +13,32 @@ var guessesLeft = 0;
 var currentWord = new Word();
 currentWord.restart();
 
+// The user can choose to enter a letter, see the letters, or get a hint
+function userOptions() {
+	console.log("");
+	inquirer.prompt([
+	    {
+	      type: "list",
+	      message: "What would you like to do?",
+	      choices: ["Guess a letter", "See the letter's I've already used", "Get a hint"],
+	      name: "choice"
+	    }
+	]).then(function(answers) {
+		// initializes the variable newguy to be a programmer object which will take
+		// in all of the user's answers to the questions above
+		var teammate = new Player(answers.name, answers.position, answers.offense, answers.defense);
+		// printInfo method is run to show that the newguy object was successfully created and filled
+		if(numPlayers < 5) {
+			teamStarters.push(teammate);
+		}
+		else {
+			teamSubs.push(teammate);
+		}
+
+		numPlayers++;
+		createPlayer();
+	});
+}
 function checkLetters(letter) {
 	var result = false;
 	var duplicate = false;
