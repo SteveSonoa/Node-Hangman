@@ -13,8 +13,8 @@ var Word = function() {
 	this.guessedLetters = [];
 	// Restarts the game with a new word
 	this.restart = function() {
-		guessesLeft = 9;
-		hints = 0;
+		controls.guessesLeft = 9;
+		controls.hints = 0;
 		this.title = "Return Of The Jedi2";
 
 		// Discover a random movie title from OMDB
@@ -65,6 +65,7 @@ var Word = function() {
 			this.letters.push(newLetter);
 		}
 		this.displayLetters();
+		userOptions();
 	}
 	// Display the appropriate output
 	this.displayLetters = function() {
@@ -82,6 +83,7 @@ var Word = function() {
 				ltd = ltd + "_ ";
 			}
 		}
+		console.log("");
 		console.log(ltd);
 	}
 };

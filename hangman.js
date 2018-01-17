@@ -2,16 +2,15 @@
 var inquirer = require("inquirer");
 var randomMovie = require('random-movie');
 
-// requiring our Classroom module exported from classroom.js
+// requiring our Word constructor exported from word.js
 var Word = require("./constructors/word.js");
 
-var startHard = 5;
-var startNormal = 7;
-var startEasy = 9;
-var guessesLeft = 0;
-var hints = 0;
+// requiring our GameControl constructor exported from gameControl.js
+var GameControl = require("./constructors/gameControl.js");
 
 var currentWord = new Word();
+var controls = new GameControl();
+
 currentWord.restart();
 
 // The user can choose to enter a letter, see the letters, or get a hint
@@ -26,21 +25,31 @@ function userOptions() {
 	    }
 	]).then(function(answers) {
 		if(answers.choice === "Get a hint") {
-			// if hints === 0
+			if(controls.hints === 0) {
 				// Display hint #1
-				// hints++
-			// else if hints === 1
+				controls.hints++;
+			}
+			else(if controls.hints === 1) {
 				// Display hint #1
 				// Display hint #2
-				// hints++
-			// else
+				controls.hints++
+			}
+			else {
 				// Display hint #1
 				// Display hint #2
 				// Display hint #3 
+			}
 		}
 		else if(answers.choice === "See the letters I've already used") {
-			// display currentWord.guessedLetters array
-			// Run this again
+			console.log("");
+			if(currentWord.guessedLetters.length > 0) {
+				console.log(currentWord.guessedLetters);
+			}
+			else {
+				console.log("You have not made any guesses yet this game.")
+			}
+			currentWord.displayLetters();
+			userOptions();
 		}
 		else {
 			// Complete another inquirer prompt for user input
