@@ -9,6 +9,7 @@ var startHard = 5;
 var startNormal = 7;
 var startEasy = 9;
 var guessesLeft = 0;
+var hints = 0;
 
 var currentWord = new Word();
 currentWord.restart();
@@ -20,25 +21,59 @@ function userOptions() {
 	    {
 	      type: "list",
 	      message: "What would you like to do?",
-	      choices: ["Guess a letter", "See the letter's I've already used", "Get a hint"],
+	      choices: ["Guess a letter", "See the letters I've already used", "Get a hint"],
 	      name: "choice"
 	    }
 	]).then(function(answers) {
-		// initializes the variable newguy to be a programmer object which will take
-		// in all of the user's answers to the questions above
-		var teammate = new Player(answers.name, answers.position, answers.offense, answers.defense);
-		// printInfo method is run to show that the newguy object was successfully created and filled
-		if(numPlayers < 5) {
-			teamStarters.push(teammate);
+		if(answers.choice === "Get a hint") {
+			// if hints === 0
+				// Display hint #1
+				// hints++
+			// else if hints === 1
+				// Display hint #1
+				// Display hint #2
+				// hints++
+			// else
+				// Display hint #1
+				// Display hint #2
+				// Display hint #3 
+		}
+		else if(answers.choice === "See the letters I've already used") {
+			// display currentWord.guessedLetters array
+			// Run this again
 		}
 		else {
-			teamSubs.push(teammate);
+			// Complete another inquirer prompt for user input
 		}
-
-		numPlayers++;
-		createPlayer();
 	});
 }
+
+// The user can choose to enter a letter, see the letters, or get a hint
+function userInput() {
+	console.log("");
+	inquirer.prompt([
+	    {
+	      message: "Type a letter and press Enter.",
+	      name: "input"
+	    }
+	]).then(function(answers) {
+		// if answers.input === "cheat"
+			// var found = false
+			// var cheatLetter = "";
+			// for i < currentWord.letters.length
+				// if !found
+					// if currentWord.letters[i].known === false
+						// cheatLetter = currentWord.letters[i].letter
+						// found = true;
+			// console.log("Maybe " + cheatLetter + " will help...");
+		// else if answers.input.length > 1
+			// console.log("Please only type 1 letter.")
+		// else
+			// checkLetters(answers.input)			
+	});
+}
+
+// User input validation
 function checkLetters(letter) {
 	var result = false;
 	var duplicate = false;

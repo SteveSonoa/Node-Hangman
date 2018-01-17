@@ -13,6 +13,8 @@ var Word = function() {
 	this.guessedLetters = [];
 	// Restarts the game with a new word
 	this.restart = function() {
+		guessesLeft = 9;
+		hints = 0;
 		this.title = "Return Of The Jedi2";
 
 		// Discover a random movie title from OMDB
