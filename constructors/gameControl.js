@@ -15,12 +15,12 @@ var GameControl = function() {
 	this.userOptions = function(currentWord, controls) {
 		console.log("");
 		inquirer.prompt([
-		    {
-		      type: "list",
-		      message: "What would you like to do?",
-		      choices: ["Guess a letter", "See the letters I've already used", "Get a hint", "Quit"],
-		      name: "choice"
-		    }
+			{
+				type: "list",
+				message: "What would you like to do?",
+				choices: ["Guess a letter", "See the letters I've already used", "Get a hint", "Quit"],
+				name: "choice"
+			}
 		]).then(function(answers) {
 			if(answers.choice === "Get a hint") {
 				if(controls.hintsUsed === 0) {
@@ -69,10 +69,10 @@ var GameControl = function() {
 	this.userInput = function(currentWord, controls) {
 		console.log("");
 		inquirer.prompt([
-		    {
-		      message: "Type a letter and press Enter.",
-		      name: "input"
-		    }
+			{
+				message: "Type a letter and press Enter.",
+				name: "input"
+			}
 		]).then(function(answers) {
 			if(answers.input === "cheat") {
 				var found = false
@@ -95,8 +95,8 @@ var GameControl = function() {
 				controls.checkLetters(answers.input, currentWord, controls);
 			}
 
-			// Display the current puzzle state
-			currentWord.displayLetters();
+			// See what happens next
+			currentWord.nextSteps(currentWord, controls);
 		});
 	}
 
@@ -150,8 +150,51 @@ var GameControl = function() {
 		}
 	}
 
+	// Checks the game status to see if there are guesses remaining, if there are any blanks remaining, and what to do next
+	this.nextSteps = function(currentWord, controls) {
+		// Check to see if the user has any guesses remaining.
+		if(controls.guessesLeft > 0) {
+			var winner = true;
+			// Check to see if there are any letters still unknown
+			for (var i = 0; i < currentWord.letters.length; i++) {
+				if(currentWord.letters[i].known === false) {
+					winner = false;
+				}
+			}
+			if(winner) {
+				console.log("YOU WIN!!!");
+				controls.newGame(currentWord, controls);
+			}
+			else {
+				// Display the current puzzle state
+				currentWord.displayLetters();
+			}
+		}
+		// If there are no guesses remaining
+		else {
+			console.log("GAME OVER!");
+			controls.newGame(currentWord, controls);
+		}
+	}
 
-
+	this.newGame = function(currentWord, controls) {
+		inquirer.prompt([
+			{
+				type: "confirm",
+				message: "Play again?",
+				name: "again",
+				default: true
+			}
+		]).then(function(answers) {
+			if(answers.again) {
+				currentWord.restart();
+			}
+			else {
+				console.log("\nThanks for playing!");
+				return null;
+			}
+		});
+	}
 };
 
 // Export the Word constructor
