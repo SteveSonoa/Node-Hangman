@@ -24,19 +24,16 @@ var GameControl = function() {
 		]).then(function(answers) {
 			if(answers.choice === "Get a hint") {
 				if(controls.hintsUsed === 0) {
-					console.log("");
-					console.log("Hint #1: " + currentWord.hint1);
+					console.log("\nHint #1: " + currentWord.hint1);
 					controls.hintsUsed++;
 				}
 				else if (controls.hintsUsed === 1) {
-					console.log("");
-					console.log("Hint #1: " + currentWord.hint1);
+					console.log("\nHint #1: " + currentWord.hint1);
 					console.log("Hint #2: " + currentWord.hint2);
 					controls.hintsUsed++
 				}
 				else {
-					console.log("");
-					console.log("Hint #1: " + currentWord.hint1);
+					console.log("\nHint #1: " + currentWord.hint1);
 					console.log("Hint #2: " + currentWord.hint2);
 					console.log("Hint #3: " + currentWord.hint3);
 				}
@@ -54,8 +51,7 @@ var GameControl = function() {
 				currentWord.displayLetters();
 			}
 			else if(answers.choice === "Quit") {
-				console.log("");
-				console.log("Thanks for playing!");
+				console.log("\nThanks for playing!");
 				return null;
 			}
 			else {
@@ -74,19 +70,29 @@ var GameControl = function() {
 		      name: "input"
 		    }
 		]).then(function(answers) {
-			// if answers.input === "cheat"
-				// var found = false
-				// var cheatLetter = "";
-				// for i < currentWord.letters.length
-					// if !found
-						// if currentWord.letters[i].known === false
-							// cheatLetter = currentWord.letters[i].letter
-							// found = true;
-				// console.log("Maybe " + cheatLetter + " will help...");
-			// else if answers.input.length > 1
-				// console.log("Please only type 1 letter.")
-			// else
-				controls.checkLetters(answers.input, currentWord, controls)			
+			if(answers.input === "cheat") {
+				var found = false
+				var cheatLetter = "";
+				for (var i = 0; i < currentWord.letters.length; i++) {
+					if(!found) {
+						if(currentWord.letters[i].known === false) {
+							cheatLetter = currentWord.letters[i].letter;
+							found = true;
+						}
+					}
+				}
+				console.log("\nMaybe " + cheatLetter + " will help...");
+			}
+			else if (answers.input.length > 1) {
+				console.log("\nPlease only type 1 letter.");
+
+			}
+			else {
+				controls.checkLetters(answers.input, currentWord, controls);
+			}
+
+			// Display the current puzzle state
+			currentWord.displayLetters();
 		});
 	}
 
@@ -117,27 +123,26 @@ var GameControl = function() {
 						result = true;
 					}
 				}
+
 				// If a correct letter was guessed, say so
 				if (result) {
-					console.log("CORRECT!");
+					console.log("\nCORRECT!");
 				}
-				// If a correct letter was not guessed, say so & update guessesLeft
+
+				// If an incorrect letter was guessed, say so & update guessesLeft
 				else {
 					controls.guessesLeft--;
-					console.log("INCORRECT!");
+					console.log("\nINCORRECT!");
 				}
 			}
 
 			// If the guessed letter has already been guessed
 			else {
-				console.log("You have already guessed that letter.");
+				console.log("\nYou have already guessed that letter.");
 			}
-
-			// Display the current puzzle state
-			currentWord.displayLetters();
 		}
 		else {
-			console.log("Please type a letter.")
+			console.log("\nPlease type a letter.")
 		}
 	}
 
