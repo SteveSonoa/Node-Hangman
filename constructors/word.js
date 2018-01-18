@@ -18,6 +18,9 @@ var Word = function() {
 	this.guessedLetters = [];
 	// Restarts the game with a new word
 	this.restart = function() {
+		console.log("");
+		console.log("Loading Hangman...");
+
 		controls.newGame();
 		this.title = "nonsense code";
 		this.hints = 0;

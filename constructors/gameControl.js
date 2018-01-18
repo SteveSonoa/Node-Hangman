@@ -16,7 +16,7 @@ var GameControl = function() {
 		    {
 		      type: "list",
 		      message: "What would you like to do?",
-		      choices: ["Guess a letter", "See the letters I've already used", "Get a hint"],
+		      choices: ["Guess a letter", "See the letters I've already used", "Get a hint", "Quit"],
 		      name: "choice"
 		    }
 		]).then(function(answers) {
@@ -38,7 +38,6 @@ var GameControl = function() {
 					console.log("Hint #2: " + currentWord.hint2);
 					console.log("Hint #3: " + currentWord.hint3);
 				}
-				currentWord.displayLetters();
 			}
 			else if(answers.choice === "See the letters I've already used") {
 				console.log("");
@@ -48,11 +47,16 @@ var GameControl = function() {
 				else {
 					console.log("You have not made any guesses yet this game.")
 				}
-				currentWord.displayLetters();
+			}
+			else if(answers.choice === "Quit") {
+				console.log("");
+				console.log("Thanks for playing!");
+				return null;
 			}
 			else {
 				// Complete another inquirer prompt for user input
 			}
+			currentWord.displayLetters();
 		});
 	}
 
