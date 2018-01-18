@@ -98,13 +98,18 @@ var GameControl = function() {
 		if(letter.toUpperCase().charCodeAt(i) >= 65 && letter.toUpperCase().charCodeAt(i) <= 90) {
 			// CHECK TO SEE IF THE LETTER HAS BEEN GUESSED ALREADY
 			for (var i = 0; i < currentWord.guessedLetters.length; i++) {
-				if(letter.toUpperCase() !== currentWord.guessedLetters[i].toUpperCase()) {
+				console.log("letter: " + letter.toUpperCase());
+				console.log("guessedLetter[i]: " + currentWord.guessedLetters[i].toUpperCase());
+				if(letter.toUpperCase() === currentWord.guessedLetters[i].toUpperCase()) {
 					duplicate = true;
 				}
 			}
 
 			// If the letter hasn't already been guessed
 			if(!duplicate) {
+				// Add the guessed letter to the guessedLetters array
+				currentWord.guessedLetters.push(letter.toUpperCase());
+
 				// Cycle through all Letter objects in the current word
 				for (var i = 0; i < currentWord.letters.length; i++) {
 					// If the guessed letter matches the cycled letter, mark the "known" indicator to true
