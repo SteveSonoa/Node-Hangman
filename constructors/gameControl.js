@@ -5,12 +5,14 @@ var GameControl = function() {
 	this.startNormal = 7;
 	this.startEasy = 9;
 	this.guessesLeft = 0;
+	this.hintsUsed = 0;
 	this.newGame = function() {
 		this.guessesLeft = 9;
+		this.hintsUsed = 0;
 	}
 
 	// The user can choose to enter a letter, see the letters, or get a hint
-	this.userOptions = function(currentWord) {
+	this.userOptions = function(currentWord, controls) {
 		console.log("");
 		inquirer.prompt([
 		    {
@@ -21,16 +23,16 @@ var GameControl = function() {
 		    }
 		]).then(function(answers) {
 			if(answers.choice === "Get a hint") {
-				if(currentWord.hints === 0) {
+				if(controls.hintsUsed === 0) {
 					console.log("");
 					console.log("Hint #1: " + currentWord.hint1);
-					currentWord.hints++;
+					controls.hintsUsed++;
 				}
-				else if (currentWord.hints === 1) {
+				else if (controls.hintsUsed === 1) {
 					console.log("");
 					console.log("Hint #1: " + currentWord.hint1);
 					console.log("Hint #2: " + currentWord.hint2);
-					currentWord.hints++
+					controls.hintsUsed++
 				}
 				else {
 					console.log("");
@@ -55,6 +57,7 @@ var GameControl = function() {
 			}
 			else {
 				// Complete another inquirer prompt for user input
+				controls.userInput();
 			}
 			currentWord.displayLetters();
 		});

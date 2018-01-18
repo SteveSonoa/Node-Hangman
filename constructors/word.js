@@ -13,7 +13,6 @@ var Word = function() {
 	this.hint1 = "";
 	this.hint2 = "";
 	this.hint3 = "";
-	this.hints = 0;
 	this.letters = [];
 	this.guessedLetters = [];
 	// Restarts the game with a new word
@@ -23,7 +22,6 @@ var Word = function() {
 
 		controls.newGame();
 		this.title = "nonsense code";
-		this.hints = 0;
 
 		// Discover a random movie title from OMDB
 // ******** COMMENT THE NEXT 3 LINES OUT WHILE OFFLINE ********
@@ -93,7 +91,7 @@ var Word = function() {
 		}
 		console.log("");
 		console.log(ltd);
-		controls.userOptions(this);
+		controls.userOptions(this, controls);
 	}
 };
 
