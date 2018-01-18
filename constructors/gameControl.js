@@ -98,8 +98,6 @@ var GameControl = function() {
 		if(letter.toUpperCase().charCodeAt(i) >= 65 && letter.toUpperCase().charCodeAt(i) <= 90) {
 			// CHECK TO SEE IF THE LETTER HAS BEEN GUESSED ALREADY
 			for (var i = 0; i < currentWord.guessedLetters.length; i++) {
-				console.log("letter: " + letter.toUpperCase());
-				console.log("guessedLetter[i]: " + currentWord.guessedLetters[i].toUpperCase());
 				if(letter.toUpperCase() === currentWord.guessedLetters[i].toUpperCase()) {
 					duplicate = true;
 				}
