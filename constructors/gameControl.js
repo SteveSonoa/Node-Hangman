@@ -96,7 +96,7 @@ var GameControl = function() {
 			}
 
 			// See what happens next
-			currentWord.nextSteps(currentWord, controls);
+			controls.nextSteps(currentWord, controls);
 		});
 	}
 
@@ -163,7 +163,7 @@ var GameControl = function() {
 			}
 			if(winner) {
 				console.log("YOU WIN!!!");
-				controls.newGame(currentWord, controls);
+				controls.playAgain(currentWord, controls);
 			}
 			else {
 				// Display the current puzzle state
@@ -173,11 +173,11 @@ var GameControl = function() {
 		// If there are no guesses remaining
 		else {
 			console.log("GAME OVER!");
-			controls.newGame(currentWord, controls);
+			controls.playAgain(currentWord, controls);
 		}
 	}
 
-	this.newGame = function(currentWord, controls) {
+	this.playAgain = function(currentWord, controls) {
 		inquirer.prompt([
 			{
 				type: "confirm",

@@ -50,11 +50,15 @@ var Word = function() {
 	// Creates new letter objects & adds them to this object's array
 	this.addLetters = function() {
 		// empty this.letters
-		for (var i = 0; i < this.letters.length; i++) {
+		for (var i = 0; i < this.letters.length; null) {
+			console.log("this.letters:");
+			console.log(this.letters);
 			this.letters.splice(0, 1);
 		}
 		// // empty this.guessedLetters
-		for (var j = 0; j < this.guessedLetters.length; j++) {
+		for (var j = 0; j < this.guessedLetters.length; null) {
+			console.log("this.guessedLetters:");
+			console.log(this.guessedLetters);
 			this.guessedLetters.splice(0, 1);
 		}
 
