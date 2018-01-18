@@ -40,6 +40,7 @@ var GameControl = function() {
 					console.log("Hint #2: " + currentWord.hint2);
 					console.log("Hint #3: " + currentWord.hint3);
 				}
+				currentWord.displayLetters();
 			}
 			else if(answers.choice === "See the letters I've already used") {
 				console.log("");
@@ -50,6 +51,7 @@ var GameControl = function() {
 				else {
 					console.log("You have not made any guesses yet this game.")
 				}
+				currentWord.displayLetters();
 			}
 			else if(answers.choice === "Quit") {
 				console.log("");
@@ -60,7 +62,6 @@ var GameControl = function() {
 				// Complete another inquirer prompt for user input. Pass along the controls object.
 				controls.userInput(currentWord, controls);
 			}
-			currentWord.displayLetters();
 		});
 	}
 
@@ -85,12 +86,12 @@ var GameControl = function() {
 			// else if answers.input.length > 1
 				// console.log("Please only type 1 letter.")
 			// else
-				controls.checkLetters(answers.input)			
+				controls.checkLetters(answers.input, currentWord, controls)			
 		});
 	}
 
 	// User input validation
-	this.checkLetters = function(letter) {
+	this.checkLetters = function(letter, currentWord, controls) {
 		var result = false;
 		var duplicate = false;
 		// If the guessed letter is a letter
@@ -107,7 +108,7 @@ var GameControl = function() {
 				// Cycle through all Letter objects in the current word
 				for (var i = 0; i < currentWord.letters.length; i++) {
 					// If the guessed letter matches the cycled letter, mark the "known" indicator to true
-					if (letter.toUpperCase() === currentWord.letters[i].toUpperCase()) {
+					if (letter.toUpperCase() === currentWord.letters[i].letter.toUpperCase()) {
 						currentWord.letters[i].known = true;
 						// Update result to indicate a correct letter was guessed
 						result = true;
@@ -119,7 +120,7 @@ var GameControl = function() {
 				}
 				// If a correct letter was not guessed, say so & update guessesLeft
 				else {
-					gameStats.guessesLeft--;
+					controls.guessesLeft--;
 					console.log("INCORRECT!");
 				}
 			}
