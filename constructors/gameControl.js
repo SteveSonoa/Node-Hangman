@@ -11,7 +11,7 @@ var GameControl = function() {
 		this.hintsUsed = 0;
 	}
 
-	// The user can choose to enter a letter, see the letters, or get a hint
+	// The user can choose to enter a letter, see the letters, or get a hint. Both currentWord and controls are passed.
 	this.userOptions = function(currentWord, controls) {
 		console.log("");
 		inquirer.prompt([
@@ -44,6 +44,7 @@ var GameControl = function() {
 			else if(answers.choice === "See the letters I've already used") {
 				console.log("");
 				if(currentWord.guessedLetters.length > 0) {
+					// The display will automatically add commas between letters in the array
 					console.log(currentWord.guessedLetters);
 				}
 				else {
@@ -56,15 +57,15 @@ var GameControl = function() {
 				return null;
 			}
 			else {
-				// Complete another inquirer prompt for user input
-				controls.userInput();
+				// Complete another inquirer prompt for user input. Pass along the controls object.
+				controls.userInput(currentWord, controls);
 			}
 			currentWord.displayLetters();
 		});
 	}
 
-	// The user can choose to enter a letter, see the letters, or get a hint
-	this.userInput = function() {
+	// Input validation and updating the puzzle
+	this.userInput = function(currentWord, controls) {
 		console.log("");
 		inquirer.prompt([
 		    {
@@ -84,7 +85,7 @@ var GameControl = function() {
 			// else if answers.input.length > 1
 				// console.log("Please only type 1 letter.")
 			// else
-				// checkLetters(answers.input)			
+				controls.checkLetters(answers.input)			
 		});
 	}
 

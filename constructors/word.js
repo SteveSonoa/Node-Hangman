@@ -91,6 +91,7 @@ var Word = function() {
 		}
 		console.log("");
 		console.log(ltd);
+		// Pass both this and controls to the gameControl constructor
 		controls.userOptions(this, controls);
 	}
 };
