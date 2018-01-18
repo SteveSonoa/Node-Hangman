@@ -9,48 +9,48 @@ var Word = function() {
 	this.hint1 = "";
 	this.hint2 = "";
 	this.hint3 = "";
-	this.letters = [];
+	this.letters = ["R", "e", "t", "u", "r", "n", " ", "O", "f", " ", "T", "h", "e", " ", "J", "e", "d", "i"];
 	this.guessedLetters = [];
 	// Restarts the game with a new word
 	this.restart = function() {
-		controls.guessesLeft = 9;
-		controls.hints = 0;
-		this.title = "Return Of The Jedi2";
+		this.title = "Return Of The Jedi";
 
 		// Discover a random movie title from OMDB
 // ******** COMMENT THE NEXT 3 LINES OUT WHILE OFFLINE ********
-		// randomMovie(function(err, data) {
-		// 	this.title = data.Title;
-		//	this.hint1 = "This movie released in " + data.Year;
-		//	this.hint2 = "Starring " + data.Actors;
-		//	this.hint3 = data.Plot;
-		// });
+		randomMovie(function(err, data) {
+			this.title = data.Title;
+			this.hint1 = "This movie released in " + data.Year;
+			this.hint2 = "Starring " + data.Actors;
+			this.hint3 = data.Plot;
+		});
 
 		// begin adding the new word
-		this.findNewWord();
+		this.findNewWord(this);
 	}
-	this.findNewWord = function() {
+	this.findNewWord = function(thisWord) {
 		// If the new title hasn't taken hold yet, wait for it to do so before moving on
-		if(this.title === "Return Of The Jedi") {
+		if(thisWord.title === "Return Of The Jedi") {
 			console.log("Waiting...");
-			setTimeout(this.findNewWord, 500);
+			setTimeout(thisWord.findNewWord, 1000 * 2, thisWord);
 		}
 		// When the new title has been updated, move forward
 		else {
-			console.log(this.title);
-			// empty this.letters
-			for (var i = 0; i < this.letters.length; i++) {
-				this.letters.splice(0, 1);
-			}
-			// // empty this.guessedLetters
-			for (var j = 0; j < this.guessedLetters.length; j++) {
-				this.guessedLetters.splice(0, 1);
-			}
+			console.log(thisWord.title);
+
+			thisWord.addLetters();
 		}
-		this.addLetters();
 	}
 	// Creates new letter objects & adds them to this object's array
 	this.addLetters = function() {
+		// empty this.letters
+		for (var i = 0; i < this.letters.length; i++) {
+			this.letters.splice(0, 1);
+		}
+		// // empty this.guessedLetters
+		for (var j = 0; j < this.guessedLetters.length; j++) {
+			this.guessedLetters.splice(0, 1);
+		}
+
 		var known = true;
 		for (var i = 0; i < this.title.length; i++) {
 			// Create a new Letter object for each character in the array (including spaces & punctuation)

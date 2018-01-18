@@ -11,6 +11,7 @@ var GameControl = require("./constructors/gameControl.js");
 var currentWord = new Word();
 var controls = new GameControl();
 
+controls.newGame();
 currentWord.restart();
 
 // The user can choose to enter a letter, see the letters, or get a hint
@@ -29,7 +30,7 @@ function userOptions() {
 				// Display hint #1
 				controls.hints++;
 			}
-			else(if controls.hints === 1) {
+			else if (controls.hints === 1) {
 				// Display hint #1
 				// Display hint #2
 				controls.hints++
