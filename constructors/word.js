@@ -1,7 +1,7 @@
 // requiring our Classroom module exported from classroom.js
 var Letter = require("./letter.js");
 var randomMovie = require('random-movie');
-var sillyMessages = require('.sillyMessages.js');
+var sillyMessages = require('./sillyMessages.js');
 
 var Word = function() {
 	// Used to create an object representing the current word the user is attempting to guess.
@@ -33,7 +33,7 @@ var Word = function() {
 		if(this.title === "nonsense code") {
 			var rndMsg = Math.floor(Math.random() * sillyMessages.length);
 			console.log(sillyMessages[rndMsg]);
-			setTimeout(this.findNewWord.bind(this), 2000);
+			setTimeout(this.findNewWord.bind(this), 1000);
 		}
 		// When the new title has been updated, move forward
 		else {

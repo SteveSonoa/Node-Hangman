@@ -2,7 +2,7 @@ var sillyMessages = [
 	"That was too easy. Picking a harder movie title...",
 	"Breaking the 4th wall...",
 	"Changing language to Português. I hope you know how to type ç and ɛ...",
-	"Downloading virus..."
+	"Downloading virus...",
 	"ERROR ID-ten-T: User will never get that one. Picking another title...",
 	"Loading Global Thermonuclear War...",
 	"Unable to load Hangman. How about a nice game of chess?",
