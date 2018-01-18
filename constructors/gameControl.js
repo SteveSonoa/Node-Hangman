@@ -1,16 +1,16 @@
+var inquirer = require("inquirer");
+
 var GameControl = function() {
 	this.startHard = 5;
 	this.startNormal = 7;
 	this.startEasy = 9;
 	this.guessesLeft = 0;
-	this.hints = 0;
 	this.newGame = function() {
 		this.guessesLeft = 9;
-		this.hints = 0;
 	}
 
 	// The user can choose to enter a letter, see the letters, or get a hint
-	this.userOptions = function() {
+	this.userOptions = function(currentWord) {
 		console.log("");
 		inquirer.prompt([
 		    {
@@ -21,20 +21,24 @@ var GameControl = function() {
 		    }
 		]).then(function(answers) {
 			if(answers.choice === "Get a hint") {
-				if(controls.hints === 0) {
-					// Display hint #1
-					controls.hints++;
+				if(currentWord.hints === 0) {
+					console.log("");
+					console.log("Hint #1: " + currentWord.hint1);
+					currentWord.hints++;
 				}
-				else if (controls.hints === 1) {
-					// Display hint #1
-					// Display hint #2
-					controls.hints++
+				else if (currentWord.hints === 1) {
+					console.log("");
+					console.log("Hint #1: " + currentWord.hint1);
+					console.log("Hint #2: " + currentWord.hint2);
+					currentWord.hints++
 				}
 				else {
-					// Display hint #1
-					// Display hint #2
-					// Display hint #3 
+					console.log("");
+					console.log("Hint #1: " + currentWord.hint1);
+					console.log("Hint #2: " + currentWord.hint2);
+					console.log("Hint #3: " + currentWord.hint3);
 				}
+				currentWord.displayLetters();
 			}
 			else if(answers.choice === "See the letters I've already used") {
 				console.log("");
@@ -45,7 +49,6 @@ var GameControl = function() {
 					console.log("You have not made any guesses yet this game.")
 				}
 				currentWord.displayLetters();
-				userOptions();
 			}
 			else {
 				// Complete another inquirer prompt for user input

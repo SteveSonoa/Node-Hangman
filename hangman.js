@@ -1,4 +1,3 @@
-// dependency for inquirer npm package
 var inquirer = require("inquirer");
 var randomMovie = require('random-movie');
 
