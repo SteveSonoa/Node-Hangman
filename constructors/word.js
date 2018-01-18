@@ -2,6 +2,9 @@
 var Letter = require("./letter.js");
 var randomMovie = require('random-movie');
 var sillyMessages = require('./sillyMessages.js');
+var GameControl = require("./gameControl.js");
+
+var controls = new GameControl();
 
 var Word = function() {
 	// Used to create an object representing the current word the user is attempting to guess.
@@ -14,6 +17,7 @@ var Word = function() {
 	this.guessedLetters = [];
 	// Restarts the game with a new word
 	this.restart = function() {
+		controls.newGame();
 		this.title = "nonsense code";
 
 		// Discover a random movie title from OMDB
