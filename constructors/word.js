@@ -1,6 +1,7 @@
 // requiring our Classroom module exported from classroom.js
 var Letter = require("./letter.js");
 var randomMovie = require('random-movie');
+var sillyMessages = require('.sillyMessages.js');
 
 var Word = function() {
 	// Used to create an object representing the current word the user is attempting to guess.
@@ -9,15 +10,15 @@ var Word = function() {
 	this.hint1 = "";
 	this.hint2 = "";
 	this.hint3 = "";
-	this.letters = ["R", "e", "t", "u", "r", "n", " ", "O", "f", " ", "T", "h", "e", " ", "J", "e", "d", "i"];
+	this.letters = [];
 	this.guessedLetters = [];
 	// Restarts the game with a new word
 	this.restart = function() {
-		this.title = "Return Of The Jedi";
+		this.title = "nonsense code";
 
 		// Discover a random movie title from OMDB
 // ******** COMMENT THE NEXT 3 LINES OUT WHILE OFFLINE ********
-		randomMovie(function(err, data) {
+		randomMovie((err, data) => {
 			this.title = data.Title;
 			this.hint1 = "This movie released in " + data.Year;
 			this.hint2 = "Starring " + data.Actors;
@@ -25,19 +26,18 @@ var Word = function() {
 		});
 
 		// begin adding the new word
-		this.findNewWord(this);
+		this.findNewWord();
 	}
-	this.findNewWord = function(thisWord) {
+	this.findNewWord = function() {
 		// If the new title hasn't taken hold yet, wait for it to do so before moving on
-		if(thisWord.title === "Return Of The Jedi") {
-			console.log("Waiting...");
-			setTimeout(thisWord.findNewWord, 1000 * 2, thisWord);
+		if(this.title === "nonsense code") {
+			var rndMsg = Math.floor(Math.random() * sillyMessages.length);
+			console.log(sillyMessages[rndMsg]);
+			setTimeout(this.findNewWord.bind(this), 2000);
 		}
 		// When the new title has been updated, move forward
 		else {
-			console.log(thisWord.title);
-
-			thisWord.addLetters();
+			this.addLetters();
 		}
 	}
 	// Creates new letter objects & adds them to this object's array
@@ -65,7 +65,7 @@ var Word = function() {
 			this.letters.push(newLetter);
 		}
 		this.displayLetters();
-		userOptions();
+		// userOptions();
 	}
 	// Display the appropriate output
 	this.displayLetters = function() {
