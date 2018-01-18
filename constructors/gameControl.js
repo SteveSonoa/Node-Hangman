@@ -42,8 +42,12 @@ var GameControl = function() {
 			else if(answers.choice === "See the letters I've already used") {
 				console.log("");
 				if(currentWord.guessedLetters.length > 0) {
+					var lettersList = "";
+					for (var i = 0; i < currentWord.guessedLetters.length; i++) {
+						lettersList = lettersList + currentWord.guessedLetters[i] + " ";
+					}
 					// The display will automatically add commas between letters in the array
-					console.log(currentWord.guessedLetters);
+					console.log(lettersList);
 				}
 				else {
 					console.log("You have not made any guesses yet this game.")
@@ -81,7 +85,7 @@ var GameControl = function() {
 						}
 					}
 				}
-				console.log("\nMaybe " + cheatLetter + " will help...");
+				console.log("\nMaybe " + cheatLetter.toUpperCase() + " will help...");
 			}
 			else if (answers.input.length > 1) {
 				console.log("\nPlease only type 1 letter.");
