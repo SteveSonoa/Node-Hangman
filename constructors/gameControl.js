@@ -42,9 +42,10 @@ var GameControl = function() {
 			else if(answers.choice === "See the letters I've already used") {
 				console.log("");
 				if(currentWord.guessedLetters.length > 0) {
+					var sortedLetters = currentWord.guessedLetters.sort();
 					var lettersList = "";
-					for (var i = 0; i < currentWord.guessedLetters.length; i++) {
-						lettersList = lettersList + currentWord.guessedLetters[i] + " ";
+					for (var i = 0; i < sortedLetters.length; i++) {
+						lettersList = lettersList + sortedLetters[i] + " ";
 					}
 					// The display will automatically add commas between letters in the array
 					console.log(lettersList);
