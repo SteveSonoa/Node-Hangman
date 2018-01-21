@@ -32,6 +32,8 @@ var Word = function() {
 			this.hint3 = data.Plot;
 		});
 
+		controls.displayLogo();
+
 		// begin adding the new word
 		this.findNewWord();
 	}
@@ -89,6 +91,10 @@ var Word = function() {
 				ltd = ltd + "_ ";
 			}
 		}
+
+		console.log("");
+		console.log("You have " + controls.guessesLeft + " guesses remaining.");
+
 		console.log("");
 		console.log(ltd);
 		// Pass both this and controls to the gameControl constructor

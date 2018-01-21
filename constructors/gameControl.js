@@ -22,7 +22,10 @@ var GameControl = function() {
 				name: "choice"
 			}
 		]).then(function(answers) {
+
 			if(answers.choice === "Get a hint") {
+				controls.displayLogo();
+
 				if(controls.hintsUsed === 0) {
 					console.log("\nHint #1: " + currentWord.hint1);
 					controls.hintsUsed++;
@@ -40,6 +43,8 @@ var GameControl = function() {
 				currentWord.displayLetters();
 			}
 			else if(answers.choice === "See the letters I've already used") {
+				controls.displayLogo();
+
 				console.log("");
 				if(currentWord.guessedLetters.length > 0) {
 					var sortedLetters = currentWord.guessedLetters.sort();
@@ -75,6 +80,8 @@ var GameControl = function() {
 				name: "input"
 			}
 		]).then(function(answers) {
+			controls.displayLogo();
+
 			if(answers.input === "cheat") {
 				var found = false
 				var cheatLetter = "";
@@ -195,6 +202,17 @@ var GameControl = function() {
 				return null;
 			}
 		});
+	}
+	this.displayLogo = function() {
+		console.log("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		console.log("  _   _      _      _   _     ____    __  __      _      _   _     ");
+		console.log(" |'| |'| U  /\"\\  u | \\ |\"| U /\"___|uU|' \\/ '|uU  /\"\\  u | \\ |\"|    ");
+		console.log("/| |_| |\\ \\/ _ \\/ <|  \\| |>\\| |  _ /\\| |\\/| |/ \\/ _ \\/ <|  \\| |>   ");
+		console.log("U|  _  |u / ___ \\ U| |\\  |u | |_| |  | |  | |  / ___ \\ U| |\\  |u   ");
+		console.log(" |_| |_| /_/   \\_\\ |_| \\_|   \\____|  |_|  |_| /_/   \\_\\ |_| \\_|    ");
+		console.log(" //   \\\\  \\\\    >> ||   \\\\,-._)(|_  <<,-,,-.   \\\\    >> ||   \\\\,-. ");
+		console.log("(_\") (\"_)(__)  (__)(_\")  (_/(__)__)  (./  \\.) (__)  (__)(_\")  (_/ ");
+		console.log("\n\n\n");
 	}
 };
 
