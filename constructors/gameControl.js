@@ -1,4 +1,5 @@
 var inquirer = require("inquirer");
+var bigLetters = require("./bigLetters.js");
 
 var GameControl = function() {
 	this.startHard = 5;
@@ -170,6 +171,9 @@ var GameControl = function() {
 				}
 			}
 			if(winner) {
+				bigLetters.titleHeader(currentWord.title);
+				console.log("");
+
 				console.log("YOU WIN!!!");
 				controls.playAgain(currentWord, controls);
 			}
@@ -180,6 +184,8 @@ var GameControl = function() {
 		}
 		// If there are no guesses remaining
 		else {
+			bigLetters.titleHeader(currentWord.title);
+			console.log("");
 			console.log("GAME OVER!");
 			controls.playAgain(currentWord, controls);
 		}
