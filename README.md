@@ -13,7 +13,7 @@ The goal was ultimately to showcase my ability to create and export Javascript C
 # Deployment
 Node is required to run this app. After downloading the repository, run `npm install` from the command line to ensure you have the necessary packages. When that's complete, simply run `node hangman` from the main directory to begin. An Internet connection is required; the app will not run without it.
 
-# Screenshots
+# Screenshot
 ![Screenshot](http://www.fullstacksteve.com/wp-content/uploads/2018/01/node-hangman-4.png)
 
 # Credits
